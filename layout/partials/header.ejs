@@ -1,0 +1,129 @@
+<nav class="navbar" role="navigation">
+  <div class="container-fluid col-xs-12 col-sm-12 col-md-11 center-block">
+    <!-- 导航头部 -->
+
+    <div class="header-left">
+    <div class="navbar-header">
+      <!-- 移动设备上的导航切换按钮 -->
+      <button type="button" class="navbar-toggle">
+        <i class="icon icon-bars"></i>
+      </button>
+      <!-- 品牌名称或logo -->
+      <a class="navbar-brand" href="/"><%- image_tag(theme.headerLogo,{ height:'32px' }) %></a>
+      <button class="btn search-btn-mobile" onclick="openSearch()"><i class="icon icon-search"></i></button>
+    </div>
+    <!-- 导航项目 -->
+
+    <div class="menu">
+      <!-- 一般导航项目 -->
+      <ul>
+        <li class="home-li"><a onclick="openlink('/')">首页</a></li>
+        <%var arr=[]%>
+<%for(var i=0;i<site.categories.data.length;i++){%>
+  <% var haveChild=site.categories.data.filter(function(item){
+    return site.categories.data[i]._id==item.parent
+  })%>
+  <%if(haveChild.length==0){%>
+    <%if(!site.categories.data[i].parent){%>
+      <%arr.push(site.categories.data[i])%>
+  <%}%>
+
+  <%}else{%>
+
+        <li class="per-menu">
+          <a><%-site.categories.data[i].name%><i class="icon icon-caret-down"></i></a>
+          <div class="child-menu">
+          <ul class="child-menu-ul">
+            <%  haveChild.forEach(function(item,index){ %>
+            <li><a onclick="openlink('<%- item.permalink %>')"><%- item.name %></a></li>
+            <% }) %> 
+          </ul>
+        </div>
+        </li>
+      <%}%>
+      <%}%>
+
+    <%for(var j=0;j<arr.length;j++){%>
+       <li class="menu-no-child"><a onclick="openlink('<%- arr[j].permalink %>')"><%- arr[j].name %></a></li>
+      <%}%>
+    <%if(theme.customMenu){%>
+      <% for(var item of Object.keys(theme.customMenu)){%>
+          <li class="menu-archives"><a onclick="openlink('<%- config.url+theme.customMenu[item] %>')"><%- item %></a></li>
+      <%}%>
+    <%}%>
+        <!-- 导航中的下拉菜单 -->
+      </ul>
+    </div><!-- END .navbar-collapse -->
+  </div>
+
+  <button class="btn search-btn" onclick="openSearch()"><i class="icon icon-search"></i></button>
+</div>
+</nav>
+<script type="text/javascript">
+$('.home-li').click(function(){
+    //$('.menu a').css('color','')
+    //$(this).children().css('color','red')
+
+})
+  $('.per-menu').click(function(event){
+    event.stopPropagation()
+    if($(this).children('.child-menu').is(':visible')){
+
+        $(this).children('.child-menu').fadeOut()
+        //$(this).children('a').css('color','')
+    }else{
+      $('.child-menu').fadeOut(200)
+      $(this).children('.child-menu').fadeIn(200)
+      //$('.per-menu').children('a').css('color','')
+      //$('.menu a').css('color','')
+      //$(this).children('a').css('color','red')
+    }
+  })
+$('.navbar-toggle').click(function(event){
+  event.stopPropagation()
+  if($('.menu').is(':visible')){
+    $('.menu,.child-menu').fadeOut(200)
+  }else{
+    $('.menu').fadeIn(200)
+  }
+})
+
+$('body').click(function(){
+
+  if(window.innerWidth<=767){
+    $('.menu,.child-menu').fadeOut(200)
+  }else{
+    $('.child-menu').fadeOut(200)
+  }
+  //$('.per-menu').children('a').css('color','')
+})
+$('.menu-no-child').click(function(event){
+  event.stopPropagation()
+  //$('.menu a').css('color','')
+  //$(this).children().last().css('color','red')
+})
+
+function openlink(val){
+  window.location.href=val
+}
+window.unload=function(){
+  localStorage.setItem('a','1')
+}
+window.onload=function(){
+  console.log(localStorage.getItem('a'))
+}
+</script>
+<script type="text/javascript">
+$('.menu>ul>li a').each(function(){
+  var index=decodeURI(window.location.href).indexOf($(this).text())
+  if(index!=-1){
+    $(this).css('color','red')
+  }
+})
+if(decodeURI(window.location.href).match(/\//g).length<=3){
+  $('.home-li>a').css('color','red')
+}
+  if(decodeURI(window.location.href).includes('archives')){
+    $('.menu-archives>a').css('color','red')
+  }
+</script>

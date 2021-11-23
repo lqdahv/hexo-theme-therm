@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="<%=theme.language%>">
+<head>
+    <title><%- page.title%></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-color@2.2.0/dist/jquery.color.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zui@1.10.0/dist/css/zui.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/zui@1.10.0/dist/js/zui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@waline/client"></script>
+    <%- css('css/therm.css') %>
+    <%- open_graph() %>
+
+</head>
+<body>
+<%- include('partials/header.ejs') %>
+
+
+
+
+
+
+
+<div class="search-cover">
+<div class="panel search-rect">
+  <div class="panel-heading">
+
+<div class="input-group search">
+  <div class="input-control search-box search-box-circle has-icon-left has-icon-right search-example" id="searchboxExample">
+    <input id="inputSearchExample3" autocomplete="off" oninput="searchPost()" type="search" class="form-control search-input" placeholder="搜索...">
+    <label for="inputSearchExample3" class="input-control-icon-left search-icon"><i class="icon icon-search"></i></label>
+  </div>
+  <span class="input-group-btn">
+    <button class="btn" onclick="closeSearch()"><i class="icon icon-times"></i></button>
+  </span>
+</div>
+
+  </div>
+  <div class="panel-body">
+<ul class="search-ul">
+
+</ul>
+<p class="no-search-result">无搜索结果</p>
+<p class="searching">搜索中...</p>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="mainAndFooter">
+
+<div class="main col-xs-12 col-sm-12 col-md-11 center-block">
+  <div  class="no-padding col-xs-12 col-sm-8 col-md-8 indexArt center-block pjax">
+<%- body %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="siderbar col-sm-1">
+<div class="information card">
+  <div>
+  <img class="avatar" src="<%- theme.avatar?theme.avatar.url:'' %>">
+  <div class="card-heading"><strong><%- theme.information?theme.information.name:'' %></strong> <i style="color:<%-theme.gender=='man'?'blue':theme.gender=='woman'?'red':'' %>" class="icon icon-<%-theme.gender=='man'?'venus':theme.gender=='woman'?'mars':''%>"></i></div>
+  <div class="card-content text-muted"><%- theme.information?theme.information.describe:'' %></div>
+  <hr>
+  <div class="contact">
+    <span><a href="mailto:<%- theme.contact?theme.contact.mail:'' %>"><i class="icon-envelope-alt"></i></a></span>
+    <span><a href="tencent://message/?uin=<%- theme.contact?theme.contact.qq:'' %>&Site=admin5.com&Menu=yes"><i class="icon icon-qq"></i></a></span>
+    <span class="wechatMe"><a href="javascript:void(0)"><i class="icon icon-wechat">
+<div class="popover bottom">
+  <div class="arrowme"></div>
+  <h3 class="popover-title">扫一扫加好友</h3>
+  <div class="popover-content">
+    <img src="<%-theme.contact?theme.contact.wechat:''%>">
+  </div>
+</div>
+    </i></a></span>
+  </div>
+</div>
+</div>
+
+
+
+  <div class="indexTags">
+<div class="panel">
+  <div class="panel-heading">
+    <span>标签</span>
+  </div>
+  <div class="panel-body">
+    <%  for(var item of site.tags.data){ %>
+      <%
+      switch(Math.round(Math.random()*6)){
+        case 1: 
+          var bgcolor = '#9c9ce1'
+          break;
+        case 2: 
+          var bgcolor = '#ed7b7b'
+          break;
+        case 3: 
+          var bgcolor = '#d48add'
+          break;
+        case 4: 
+          var bgcolor = '#b4cd77'
+          break;
+        case 5: 
+          var bgcolor = '#7bcfc3'
+          break;
+        case 6: 
+          var bgcolor = '#a784df'
+          break;
+      }
+      %>
+    <a class="label" style="background: <%- bgcolor %>" href="<%- item.permalink %>"><%- item.name %><%- item.length %></a>
+    <% } %>   
+  </div>
+</div>
+</div>
+
+
+<% if(theme.ad){ %>
+<div class="indexAd">
+    <a href="<%- theme.ad.link%>"><img src="<%- theme.ad.img %>"></a>
+</div>
+<%}%>
+
+<% if(theme.friend){ %>
+<div class="indexFrided">
+<div class="panel">
+  <div class="panel-heading">
+    <span>我的友链</span>
+      <a class="getFriend" href=""><span>申请</span></a>
+  </div>
+  <div class="panel-body">
+    <%  for(var item of theme.friend){ %>
+    <a class="label label-success" href="<%- item.link %>"><%- item.name %></a>
+    <% } %>   
+  </div>
+</div>
+</div>
+<%}%>
+
+
+</div>
+</div>
+
+
+<footer>
+  <div>
+    <p>由hexo&therm主题强力驱动</p>
+  </div>
+</footer>
+</div>
+</body>
+
+
+
+<script type="text/javascript">
+var popover = false
+$('.wechatMe').click(function(){
+      $('.popover').show(200,function(){
+        popover=true
+      });
+})
+$('body').click(function(){
+  if($('.popover').attr('style')!='display:none'&&popover){
+    $('.popover').hide(200)
+    popover=false
+  }
+  
+})
+</script>
+
+<script type="text/javascript">
+  
+function searchPost(){
+  var searchText=$('.search-input').val()
+  if(searchText){
+    $('.search-ul').empty()
+    axios.get('/search.json').then(function(res){
+        var result=res.data.filter(function(item){
+          return item.title.indexOf(searchText)!=-1
+        })
+        if(result.length){
+          $('.no-search-result').hide()
+        for(var item of result){
+          var attachLi="<li><a href="+item.url+"><h4>"+item.title+"</h4></a><p>"+item.content+"</p></li>"
+            $('.search-ul').append(attachLi)
+        }
+      }else{
+        $('.no-search-result').show()
+      }
+    })
+  }
+} 
+
+
+function preventSlide(event){
+  event.preventDefault()
+}
+function openSearch(){
+  $('.search-cover').fadeIn(200)
+  $('body').css('overflow','hidden')
+window.addEventListener("touchmove", preventSlide,{passive: false})
+}
+
+function closeSearch(){
+  $('.search-cover').fadeOut(200)
+  $('body').css('overflow','visible')
+  $('.no-search-result').hide()
+  window.removeEventListener("touchmove", preventSlide,{passive: false})
+  
+}
+var a=1
+</script>
+</html>
