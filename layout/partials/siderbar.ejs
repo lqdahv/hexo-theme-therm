@@ -1,0 +1,84 @@
+<style type="text/css">
+  .panel{
+    border-radius: 0 0 2px 2px;
+  }
+  .panel-heading{
+    border-radius: 2px 2px 0 0;
+  }
+  .indexAd img {
+  width: 100%;
+  max-height: 286px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.toc{
+  padding: 0;
+}
+ol{
+  list-style: none;
+}
+ol a{
+  text-decoration: none!important;
+  color: #2a2a2a;
+  padding: 2px 0;
+  display: block;
+}
+
+</style>
+<div class="siderBody">
+  <% if(!is_post()){ %>
+<div class="information card">
+  <img class="avatar" src="<%- theme.avatar?theme.avatar.url:'' %>">
+  <div class="indexNick"><strong><%- theme.information?theme.information.name:'' %></strong><i style="color:<%-theme.gender=='man'?'blue':theme.gender=='woman'?'red':'' %>;margin-left:4px;font-size: 8px;" class="icon icon-<%-theme.gender=='man'?'mars':theme.gender=='woman'?'venus':''%> icon-12x"></i>
+    <div class="card-content text-muted"><%- theme.information?theme.information.describe:'' %></div>
+  </div>
+</div>
+<%}%>
+  <div class="indexTags">
+<div class="panel">
+  <div class="panel-heading">
+    <span>标签云</span>
+  </div>
+  <div class="panel-body">
+    <%  for(var item of site.tags.data){ %>
+    <a class="label" style="background: white;color: #484848;" href="<%- item.permalink %>"># <%- item.name %></a>
+    <% } %>   
+  </div>
+</div>
+</div>
+<%if(is_post()&&toc(page.content)){%>
+<div class="toc">
+  <div class="panel">
+  <div class="panel-heading">
+    <span>目录</span>
+  </div>
+  <div class="panel-body">
+    <%- toc(page.content) %>  
+  </div>
+</div>
+</div>
+<%}%>
+
+<% if(theme.ad&&!is_post()){ %>
+<div class="indexAd">
+    <a href="<%- theme.ad.link%>" target="_blank"><img src="<%- theme.ad.img %>"></a>
+</div>
+<%}%>
+
+<% if(theme.friend&&!is_post()){ %>
+<div class="indexFrided">
+<div class="panel">
+  <div class="panel-heading">
+    <span>我的友链</span>
+      <!--<a class="getFriend" href=""><span>申请</span></a>-->
+  </div>
+  <div class="panel-body">
+    <%  for(var item of theme.friend){ %>
+    <a class="label" style="background: white;color: #484848;" href="<%- item.link %>"><%- item.name %></a>
+    <% } %>   
+  </div>
+</div>
+</div>
+<%}%>
+
+</div>
