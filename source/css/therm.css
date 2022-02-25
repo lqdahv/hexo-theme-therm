@@ -500,6 +500,7 @@ ul {
 
 .child-menu-ul>li {
   padding: 10px 14px;
+  width: 100%;
   white-space: nowrap;
 }
 
