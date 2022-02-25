@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <style type="text/css">
   .content{
     line-height: 28px;
@@ -98,32 +97,6 @@ h1,h2,h3,h4,h5,h6{
   <li class="next"><a href="<%- page.next.permalink %>">下一篇&nbsp;<i class="icon-angle-right"></i></a></li>
   <%}else{%>
     <li class="next disabled"><a href="">没有了&nbsp;<i class="icon-angle-right"></i></a></li>
-=======
-<article id="post">
-  <section>
-  <h1><%=page.title%></h1>
-  <p class="time"><span style="margin-right: 16px;"><i class="icon icon-pencil text-primary"></i><%= date(page.date,'YYYY年MM月DD日 HH:mm:ss') %></span><span>总字数:<%-strip_html(page.content).replace(/\s/g,'').length%></span></p>
-<hr>
-  <div class="content"><%-page.content%></div>
-  <div style="margin-top: 16px;">
-    <span style="margin-right: 16px;"><i class="icon icon-check text-green"></i><%= date(page.updated,'YYYY年MM月DD日 HH:mm:ss') %></span>
-  </div>
-</section>
-  <footer>
-    <p class="pull-right text-muted">本文在知识共享 署名-相同方式共享 3.0协议之条款下提供。</p>
-    <p class="text-important">本文节选自 Wikipedia HTML5 词条。</p>
-    <ul class="pager pager-justify">
-<% if(page.prev){%>
-  <li class="previous"><a href="<%- page.prev.permalink %>"><i class="icon-arrow-left"></i>上一篇</a></li>
-  <%}else{%>
-    <li class="previous disabled"><a href=""><i class="icon-arrow-left"></i>没有了</a></li>
-  <%}%>
-
-<% if(page.next){%>
-  <li class="next"><a href="<%- page.next.permalink %>">下一篇<i class="icon-arrow-right"></i></a></li>
-  <%}else{%>
-    <li class="next disabled"><a href="">没有了<i class="icon-arrow-right"></i></a></li>
->>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8
   <%}%>
     </ul>
   </footer>
@@ -134,9 +107,5 @@ h1,h2,h3,h4,h5,h6{
     el: '#waline',
     serverURL: '<%-theme.waline%>'
   })
-<<<<<<< HEAD
 </script>
 
-=======
-</script>
->>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8

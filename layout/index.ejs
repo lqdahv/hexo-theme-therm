@@ -1,7 +1,6 @@
 
 <div class="indexMain"> <!--左边文章列-->
 <div>
-<<<<<<< HEAD
 	<%if(site.data.topPost&&page.prev==0){%> <!--从其他页面进入首页加载推荐-->
 		<%for(var i=0;i<site.data.topPost.length;i++){%>
 			<div class="indexPerArt">
@@ -97,113 +96,12 @@
 			</p>
 		</div>
 	</div>
-=======
- <%if(site.data.topPost&&page.prev==0){%>
- <%for(var i=0;i<site.data.topPost.length;i++){%>
-<div class="indexPerArt">
-	<span class="topPost">推荐</span>
-	<%if(site.data.topPost[i].photos.length){%>
-		<div class="indexPerImg" style="background: url('<%- site.data.topPost[i].photos[0] %>');"></div>
-	<%}else{%>
-		<%var imgurl=site.data.topPost[i].content.match(/http.+\/\/.+(png|jpg|jpeg)/i)%>
-			<%if(imgurl){%>
-					<div class="indexPerImg" style="background: url(<%- imgurl[0] %>);"></div>
-			<%}else{%>
-					<div class="indexPerImg" style="background: url(<%- theme.img %>);"></div>
-			<%}%>
-	<%}%>
-	<div class="indexExcerptRight">
-		<a href="<%- site.data.topPost[i].permalink %>"><h3><%- site.data.topPost[i].title %></h3></a>
-		<%if(site.data.topPost[i].excerpt){%>
-			<div class="contentExcerpt"><%- site.data.topPost[i].excerpt %></div>
-		<%}else{%>
-			<div class="contentExcerpt"><%- trim(strip_html(site.data.topPost[i].content))%></div>
-		<%}%>
-		<p class="authorExcerpt"><%- date(site.data.topPost[i].date, 'YYYY年MM月DD日')+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+site.data.topPost[i].categories.data[0].name %></p>
-	</div>
-</div>
-<%}%>
- <%}else if(site.data.topPost&&page.prev){%>
- <%}else{%>
-
-	 <% if(theme.topTitle instanceof Array&&theme.topTitle.length!=0){
-
-			site.data.topPost=site.posts.data.filter(function(item){
-					return item.title == theme.topTitle.slice(0,3).find(function(j){return j==item.title})
-			})
-		}%>
-
-	%>
-	<%if(site.data.topPost){%>
-	<%for(var i=0;i<site.data.topPost.length;i++){%>
-<div class="indexPerArt">
-	<span class="topPost">推荐</span>
-	<%if(site.data.topPost[i].photos.length){%>
-		<div class="indexPerImg" style="background: url('<%- site.data.topPost[i].photos[0] %>');"></div>
-	<%}else{%>
-		<%var imgurl=site.data.topPost[i].content.match(/http.*\..+/g)%>
-			<%if(imgurl){%>
-					<div class="indexPerImg" style="background: url(<%- imgurl[0] %>);"></div>
-			<%}else{%>
-					<div class="indexPerImg" style="background: url(<%- theme.img %>);"></div>
-			<%}%>
-	<%}%>
-	<div class="indexExcerptRight">
-		<a href="<%- site.data.topPost[i].permalink %>"><h3><%- site.data.topPost[i].title %></h3></a>
-		<%if(site.data.topPost[i].excerpt){%>
-			<div class="contentExcerpt"><%- site.data.topPost[i].excerpt %></div>
-		<%}else{%>
-			<div class="contentExcerpt"><%- trim(strip_html(site.data.topPost[i].content))%></div>
-		<%}%>
-		<p class="authorExcerpt"><%- date(site.data.topPost[i].date, 'YYYY年MM月DD日')+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"+site.data.topPost[i].categories.data[0].name %></p>
-	</div>
-</div>
-<%}%>
-<%}%>
- <%}%>
-
-
-
-
-<% for (var item of page.posts.data){ %>
-<%if(site.data.topPost&&site.data.topPost.findIndex(function(i){return i==item})!=-1){
-	continue
-}%>
-<div class="indexPerArt">
-	<%if(item.photos.length){%>
-		<div class="indexPerImg" style="background: url('<%- item.photos[0] %>');"></div>
-	<%}else{%>
-		<%var imgurl=item.content.match(/http.+\/\/.+(png|jpg|jpeg|webp)/i)%>
-			<%if(imgurl){%>
-					<div class="indexPerImg" style="background: url(<%- imgurl[0] %>);"></div>
-			<%}else{%>
-					<div class="indexPerImg" style="background: url(<%- theme.img %>);"></div>
-			<%}%>
-	<%}%>
-	<div class="indexExcerptRight">
-		<a href="<%- item.permalink %>"><h3><%- item.title %></h3></a>
-		<%if(item.excerpt){%>
-			<div class="contentExcerpt"><%- item.excerpt %></div>
-		<%}else{%>
-			<div class="contentExcerpt"><%- trim(strip_html(item.content)) %></div>
-		<%}%>
-		<p class="authorExcerpt"><%- date(item.date, 'YYYY年MM月DD日')+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"%>
-			<%if(item.categories.data[1]){%>
-				<%- item.categories.data[1].name %>
-			<% }else if(item.categories.data[0]){%>
-			<%- item.categories.data[0].name %>
-			<%}%>
-			</p>
-	</div>
-</div>
->>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8
 <% } %>
 </div>
 
 <!--上一页下一页-->
 <ul class="pager pager-justify">
 <% if(page.prev_link){%>
-<<<<<<< HEAD
 	<li class="previous"><a href="<%- page.prev_link %>" style="background:#4a6deb;color:white;font-size: 14px;"><i class="icon-angle-left"></i>&nbsp;上一页</a></li>
 	<%}else{%>
 		<li class="previous disabled"><a href=""><i class="icon-angle-left"></i>&nbsp;没有了</a></li>
@@ -234,18 +132,3 @@
 		box-shadow: 0 0 10px 0px rgb(11 30 82 / 6%)
 	}
 </style>
-=======
-	<li class="previous"><a href="<%- page.prev_link %>" style="background:#4a6deb;color:white"><i class="icon-chevron-left"></i>上一页</a></li>
-	<%}else{%>
-		<li class="previous disabled"><a href=""><i class="icon-chevron-left"></i>没有了</a></li>
-	<%}%>
-
-<% if(page.next_link){%>
-	<li class="next"><a href="<%- page.next_link %>" style="background:#4a6deb;color:white">下一页<i class="icon-chevron-right"></i></a></li>
-	<%}else{%>
-		<li class="next disabled"><a href="">没有了<i class="icon-chevron-right"></i></a></li>
-	<%}%>
-</ul>
-
-</div>
->>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8
