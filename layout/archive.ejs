@@ -1,3 +1,34 @@
+<<<<<<< HEAD
+=======
+<div class="archive">
+  <% var firstTime=date(page.posts.data[0].date,'YYYY')%> 
+  <%for(var i=firstTime;i>=2020;i--){%>
+    <% var post=page.posts.data.filter(function(item){%>
+      <%var time=date(item.date,'YYYY') %>
+      <% return time==i.toString()%>
+    <%})%>
+    <%if(post.length==0){
+      break
+    }%>
+    <div class="archive-year">
+      <h1 class="archive-h1"><%-i%></h1>
+      <div class="archive-flex">
+        <%for(var item of post){%>
+          <ul class="archive-ul">
+            <li class="archive-li">
+              <a class="archive-title" href="<%-item.permalink%>"><h5><%-item.title%></h5></a>
+              <p><%-date(item.date,'YYYY年MM月DD--HH:mm:ss')%></p>
+            </li>
+          </ul>
+        <%}%>
+        <p></p>
+        <p></p>
+      </div>
+    </div>
+  <%}%>
+</div>
+
+>>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8
 <style type="text/css">
 .archive{
   padding: 4px 12px;
@@ -23,12 +54,18 @@
   }
 .archive-flex a{
   text-decoration: none;
+<<<<<<< HEAD
   color: #4584e5;
 }
+=======
+}
+  @media screen and (max-width: 767px){
+>>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8
   .archive-ul{
     padding: 0;
     margin-bottom: 16px;
     padding: 8px;
+<<<<<<< HEAD
     background: rgb(221 221 221 / 10%);
     border-radius: 2px;
   }
@@ -37,6 +74,10 @@
   }
   @media screen and (max-width: 767px){
   .archive-ul{
+=======
+    background: #c1e3fb;
+    border-radius: 4px;
+>>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8
     width: 49%;
   }
   .archive-li p{
@@ -46,12 +87,23 @@
 
   .archive-title h5{
     margin: 2px 0 20px 0;
+<<<<<<< HEAD
     line-height: 16px;
     word-break: break-all;
+=======
+>>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8
   }
 
   @media screen and (min-width: 512px){
   .archive-ul{
+<<<<<<< HEAD
+=======
+    padding: 0;
+    margin-bottom: 16px;
+    padding: 8px;
+    background: #c1e3fb;
+    border-radius: 4px;
+>>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8
     width: 32.5%;
   }
   .archive-li p{
@@ -63,6 +115,14 @@
   }
   @media screen and (min-width: 992px){
   .archive-ul{
+<<<<<<< HEAD
+=======
+    padding: 0;
+    margin-bottom: 16px;
+    padding: 8px;
+    background: #c1e3fb;
+    border-radius: 4px;
+>>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8
     width: 32.6%;
   }
   .archive-li p{
@@ -72,6 +132,7 @@
     width: 32.6%;
   }
   }
+<<<<<<< HEAD
   .date{
     color: #747474;
   }
@@ -105,3 +166,6 @@
   <%}%>
 </div>
 
+=======
+</style>
+>>>>>>> 1a32c368f6111ea0ec8326bc9a3ac089d9c47ee8
